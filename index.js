@@ -9,14 +9,18 @@ const run_action = async () => {
 		const ssm = new AWS.SSM();
 
 		for (const [variable, value] of Object.entries(process.env)) {
-			core.debug(`Putting parameter ${variable}`);
+			if (variable.startsWith('AWS_')) {
+				core.debug(`Skipping paramter ${variable}`);
+			} else {
+				core.debug(`Putting parameter ${variable}`);
 
-			await ssm
-				.putParameter({
-					Name: `/${applicationName}/temp/${variable}`,
-					Value: value,
-				})
-				.promise();
+				await ssm
+					.putParameter({
+						Name: `/${applicationName}/temp/${variable}`,
+						Value: value,
+					})
+					.promise();
+			}
 		}
 	} catch (e) {
 		core.setFailed(e.message);
