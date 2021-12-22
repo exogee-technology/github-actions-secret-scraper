@@ -1,0 +1,13 @@
+name: 'GitHub Secrets to AWS SSM scraper'
+description: 'Load GitHub secrets, then push them into AWS SSM'
+author: 'Kevin Brown <kevin.brown@exogee.com>'
+branding:
+  icon: 'cloud'
+  color: 'orange'
+inputs:
+  ssm-application-name:
+    description: 'Used as the root for the SSM write'
+    required: true
+runs:
+  using: 'node16'
+  main: 'index.js'
