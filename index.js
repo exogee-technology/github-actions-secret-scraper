@@ -21,6 +21,7 @@ const run_action = async () => {
 						Name: `/${applicationName}/temp/${variable}`,
 						Value: value,
 						Type: 'SecureString',
+						Overwrite: true,
 					})
 					.promise();
 			}
