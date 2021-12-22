@@ -18,6 +18,7 @@ const run_action = async () => {
 					.putParameter({
 						Name: `/${applicationName}/temp/${variable}`,
 						Value: value,
+						Type: 'SecureString',
 					})
 					.promise();
 			}
